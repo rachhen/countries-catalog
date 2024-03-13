@@ -1,3 +1,5 @@
+import { convertNativeNameToArray } from "~/lib/country";
+import { cn } from "~/lib/utils";
 import { Country } from "~/types/country";
 
 type CountryItemProps = {
@@ -5,27 +7,54 @@ type CountryItemProps = {
 };
 
 export function CountryItem({ item }: CountryItemProps) {
+  const nativeName = convertNativeNameToArray(item.name.nativeName)
+    .map(({ value }) => value.common)
+    .join(", ");
+
   return (
     <a href="#">
       <div className="border rounded-md">
-        <div className="px-3 pt-3">
+        <div className="px-2 pt-2 border-b">
           <img
             src={item.flags.png}
             alt={item.flags.alt}
             className="rounded-md w-full h-24 object-cover"
           />
-          <h3 className="text-lg font-semibold">{item.name.official}</h3>
+          <h3 className="text-lg font-semibold py-2">{item.name.official}</h3>
         </div>
-        <div className="px-3 pb-3 text-sm text-foreground/70">
-          <div className="flex justify-between items-center">
-            <strong>Country Code:</strong>
-            <span>
-              {item.cca2} and {item.cca3}
-            </span>
-          </div>
-          <p>Native Name:</p>
+        <div className="text-sm text-foreground/70">
+          <ContentRow label="Country Code (Alpha 2)">
+            <span>{item.cca2}</span>
+          </ContentRow>
+          <ContentRow label="Country Code (Alpha 3)">
+            <span>{item.cca3}</span>
+          </ContentRow>
+          <ContentRow className="gap-1 items-start" label="Native">
+            <span className="flex flex-1">{nativeName}</span>
+          </ContentRow>
+          <ContentRow className="gap-1 items-start" label="Spelling">
+            <span className="flex flex-1">{item.altSpellings.join(", ")}</span>
+          </ContentRow>
         </div>
       </div>
     </a>
+  );
+}
+
+type ContentRowProps = React.HTMLAttributes<HTMLDivElement> & {
+  label: string;
+};
+function ContentRow({ className, label, children, ...props }: ContentRowProps) {
+  return (
+    <div
+      className={cn(
+        "flex justify-between items-center border-b p-2",
+        className
+      )}
+      {...props}
+    >
+      <span>{label}:</span>
+      {children}
+    </div>
   );
 }

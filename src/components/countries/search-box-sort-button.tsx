@@ -4,15 +4,13 @@ import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
 export default function SearchBoxSortButton() {
-  const [position, setPosition] = useState<SortBy>("asc");
+  const [position, setPosition] = useState<SortBy | undefined>();
   const { onSort } = useCountryContext();
 
   function handleSort(sort: SortBy) {
@@ -32,17 +30,15 @@ export default function SearchBoxSortButton() {
           >
             <path
               fill="currentColor"
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M4.932 5.432a.45.45 0 1 0 .636.636L7.5 4.136l1.932 1.932a.45.45 0 0 0 .636-.636l-2.25-2.25a.45.45 0 0 0-.636 0zm5.136 4.136a.45.45 0 0 0-.636-.636L7.5 10.864L5.568 8.932a.45.45 0 0 0-.636.636l2.25 2.25a.45.45 0 0 0 .636 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             />
           </svg>
-          Sort
+          Sort By
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Sort By</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuRadioGroup
           value={position}
           onValueChange={(value) => handleSort(value as SortBy)}
