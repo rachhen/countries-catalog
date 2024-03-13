@@ -2,10 +2,12 @@ import { createContext, useContext, useState } from "react";
 
 import { Country } from "../types/country";
 
+export type SortBy = "asc" | "desc";
+
 type CountryContextType = {
   countries: Country[];
   onSearch: (value: string) => void;
-  onSort?: (sort: "asc" | "desc") => void;
+  onSort: (sort: SortBy) => void;
 };
 
 const CountryContext = createContext<CountryContextType | undefined>({
@@ -34,7 +36,7 @@ export function CountryProvider({ children, data }: CountryProviderProps) {
     setCountries(filteredCountries);
   }
 
-  function onSort(sort: "asc" | "desc") {
+  function onSort(sort: SortBy) {
     const sortedCountries = countries.sort((a, b) => {
       if (sort === "asc") {
         return a.name.official.localeCompare(b.name.official);

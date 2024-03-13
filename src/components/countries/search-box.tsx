@@ -1,5 +1,6 @@
 import { useCountryContext } from "~/contexts/country";
 import { Input } from "../ui/input";
+import SearchBoxSortButton from "./search-box-sort-button";
 
 export function SearchBox() {
   const { onSearch } = useCountryContext();
@@ -7,7 +8,10 @@ export function SearchBox() {
   return (
     <div className="py-4">
       <h2 className="text-3xl pb-3">Search for a country</h2>
-      <Input onChange={(e) => onSearch(e.target.value)} />
+      <div className="flex gap-4">
+        <Input onChange={(e) => onSearch(e.target.value)} />
+        <SearchBoxSortButton />
+      </div>
     </div>
   );
 }
