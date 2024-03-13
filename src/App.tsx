@@ -1,11 +1,15 @@
-import { Button } from "./components/ui/button";
+import { Countries } from "./components/countries";
+import { Header } from "./components/header";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <main>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button>Hi</Button>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <Header />
+      <Countries />
+    </QueryClientProvider>
   );
 }
 
