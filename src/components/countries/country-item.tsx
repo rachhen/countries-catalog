@@ -32,7 +32,11 @@ export function CountryItem({ item }: CountryItemProps) {
           <ContentRow className="gap-1 items-start" label="Native">
             <span className="flex flex-1">{nativeName}</span>
           </ContentRow>
-          <ContentRow className="gap-1 items-start" label="Spelling">
+          <ContentRow
+            className="gap-1 items-start"
+            label="Spelling"
+            isSeparator={false}
+          >
             <span className="flex flex-1">{item.altSpellings.join(", ")}</span>
           </ContentRow>
         </div>
@@ -43,12 +47,20 @@ export function CountryItem({ item }: CountryItemProps) {
 
 type ContentRowProps = React.HTMLAttributes<HTMLDivElement> & {
   label: string;
+  isSeparator?: boolean;
 };
-function ContentRow({ className, label, children, ...props }: ContentRowProps) {
+function ContentRow({
+  className,
+  label,
+  children,
+  isSeparator = true,
+  ...props
+}: ContentRowProps) {
   return (
     <div
       className={cn(
-        "flex justify-between items-center border-b p-2",
+        "flex justify-between items-center p-2",
+        isSeparator ? "border-b" : "",
         className
       )}
       {...props}
