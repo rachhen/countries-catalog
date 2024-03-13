@@ -1,16 +1,12 @@
-import { convertNativeNameToArray } from "~/lib/country";
-import { cn } from "~/lib/utils";
 import { Country } from "~/types/country";
+import CountryItemModal from "./country-item-modal";
+import { CountryItemContent } from "./country-item-content";
 
 type CountryItemProps = {
   item: Country;
 };
 
 export function CountryItem({ item }: CountryItemProps) {
-  const nativeName = convertNativeNameToArray(item.name.nativeName)
-    .map(({ value }) => value.common)
-    .join(", ");
-
   return (
     <a href="#">
       <div className="border rounded-md">
@@ -22,51 +18,9 @@ export function CountryItem({ item }: CountryItemProps) {
           />
           <h3 className="text-lg font-semibold py-2">{item.name.official}</h3>
         </div>
-        <div className="text-sm text-foreground/70">
-          <ContentRow label="Country Code (Alpha 2)">
-            <span>{item.cca2}</span>
-          </ContentRow>
-          <ContentRow label="Country Code (Alpha 3)">
-            <span>{item.cca3}</span>
-          </ContentRow>
-          <ContentRow className="gap-1 items-start" label="Native">
-            <span className="flex flex-1">{nativeName}</span>
-          </ContentRow>
-          <ContentRow
-            className="gap-1 items-start"
-            label="Spelling"
-            isSeparator={false}
-          >
-            <span className="flex flex-1">{item.altSpellings.join(", ")}</span>
-          </ContentRow>
-        </div>
+        <CountryItemContent item={item} />
+        <CountryItemModal />
       </div>
     </a>
-  );
-}
-
-type ContentRowProps = React.HTMLAttributes<HTMLDivElement> & {
-  label: string;
-  isSeparator?: boolean;
-};
-function ContentRow({
-  className,
-  label,
-  children,
-  isSeparator = true,
-  ...props
-}: ContentRowProps) {
-  return (
-    <div
-      className={cn(
-        "flex justify-between items-center p-2",
-        isSeparator ? "border-b" : "",
-        className
-      )}
-      {...props}
-    >
-      <span>{label}:</span>
-      {children}
-    </div>
   );
 }
