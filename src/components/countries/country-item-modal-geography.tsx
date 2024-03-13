@@ -11,26 +11,26 @@ export function CountryItemModalGeography({
 }: CountryItemModalCodesProps) {
   return (
     <div className="pt-4">
-      <h2 className="text-xl pb-1 font-semibold text-card-foreground">
+      <h2 className="pb-1 text-xl font-semibold text-card-foreground">
         Geography
       </h2>
       <Table>
         <TableBody>
           <TableRow>
             <TableHead>Region</TableHead>
-            <TableCell className="text-end w-full">{item.region}</TableCell>
+            <TableCell className="w-full">{item.region}</TableCell>
           </TableRow>
           <TableRow>
             <TableHead>Subregion</TableHead>
-            <TableCell className="text-end">{item.subregion}</TableCell>
+            <TableCell>{item.subregion}</TableCell>
           </TableRow>
           <TableRow>
             <TableHead>Capital</TableHead>
-            <TableCell className="text-end">{item.capital}</TableCell>
+            <TableCell>{item.capital}</TableCell>
           </TableRow>
           <TableRow>
             <TableHead>Demonym</TableHead>
-            <TableCell className="text-end">
+            <TableCell>
               {Object.entries(item.demonyms)
                 .map(([, value]) => value.f)
                 .join(", ")}
@@ -38,7 +38,7 @@ export function CountryItemModalGeography({
           </TableRow>
           <TableRow>
             <TableHead>Lat/Lng</TableHead>
-            <TableCell className="text-end">
+            <TableCell>
               <a
                 target="_blank"
                 href={item.maps.googleMaps}
@@ -50,9 +50,7 @@ export function CountryItemModalGeography({
           </TableRow>
           <TableRow>
             <TableHead>Area</TableHead>
-            <TableCell className="text-end">
-              {numberWithCommas(item.area)} km²
-            </TableCell>
+            <TableCell>{numberWithCommas(item.area)} km²</TableCell>
           </TableRow>
         </TableBody>
       </Table>

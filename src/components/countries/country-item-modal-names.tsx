@@ -12,12 +12,14 @@ export function CountryItemModalNames({ item }: CountryItemModalNamesProps) {
 
   return (
     <div>
-      <h2 className="text-xl pb-1 font-semibold text-card-foreground">Names</h2>
+      <h2 className="pb-1 text-xl font-semibold text-card-foreground">Names</h2>
       <Table>
         <TableBody>
           <TableRow>
             <TableHead>Common</TableHead>
-            <TableCell className="min-w-64">{item.name.common}</TableCell>
+            <TableCell className="w-full md:min-w-64">
+              {item.name.common}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableHead>Official</TableHead>

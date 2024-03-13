@@ -18,11 +18,16 @@ export function CountryItemModal({
 }: CountryItemModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-4xl max-h-screen overflow-x-auto">
+      <DialogContent className="max-h-screen max-w-4xl overflow-x-auto">
         <DialogHeader>
           <DialogTitle>{item.name.official}</DialogTitle>
-          <div className="flex pt-4 gap-4">
+          <div className="flex flex-col gap-4 pt-4 md:flex-row">
             <div className="flex flex-1 flex-col">
+              <img
+                src={item.flags.png}
+                alt={item.flags.alt}
+                className="block h-56 w-full object-cover pb-4 md:hidden"
+              />
               <CountryItemModalNames item={item} />
               <CountryItemModalCodes item={item} />
             </div>
@@ -30,7 +35,7 @@ export function CountryItemModal({
               <img
                 src={item.flags.png}
                 alt={item.flags.alt}
-                className="w-full h-56 object-cover pb-4"
+                className="hidden h-56 w-full object-cover pb-4 md:block"
               />
               <CountryItemModalLanguage item={item} />
               <CountryItemModalGeography item={item} />

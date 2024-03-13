@@ -10,7 +10,7 @@ export function CountryItemModalLanguage({
 }: CountryItemModalLanguageProps) {
   return (
     <div>
-      <h2 className="text-xl pb-1 font-semibold text-card-foreground">
+      <h2 className="pb-1 text-xl font-semibold text-card-foreground">
         Languages
       </h2>
       <Table>
