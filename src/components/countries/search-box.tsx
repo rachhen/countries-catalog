@@ -7,7 +7,7 @@ export function SearchBox() {
 
   return (
     <div className="py-4">
-      <h2 className="text-3xl pb-3">Search for a country</h2>
+      <h2 className="pb-3 text-3xl">Search for a country</h2>
       <div className="flex gap-4">
         <Input onChange={(e) => onSearch(e.target.value)} />
         <SearchBoxSortButton />

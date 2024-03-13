@@ -15,7 +15,7 @@ export const CountryItemContent = ({ item }: CountryItemContentProps) => {
         .map(({ value }) => value.common)
         .join(", "),
 
-    [item.name.nativeName]
+    [item.name.nativeName],
   );
 
   return (
@@ -29,11 +29,11 @@ export const CountryItemContent = ({ item }: CountryItemContentProps) => {
       <CountryContentRow label="Int. dial code">
         <span>{`${item.idd.root}${item.idd.suffixes}`}</span>
       </CountryContentRow>
-      <CountryContentRow className="gap-1 items-start" label="Native">
+      <CountryContentRow className="items-start gap-1" label="Native">
         <span className="flex flex-1">{nativeName}</span>
       </CountryContentRow>
       <CountryContentRow
-        className="gap-1 items-start"
+        className="items-start gap-1"
         label="Spelling"
         isSeparator={false}
       >

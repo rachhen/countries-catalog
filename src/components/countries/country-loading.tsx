@@ -3,9 +3,9 @@ import { Skeleton } from "../ui/skeleton";
 export function CountryLoading() {
   return (
     <div className="container">
-      <div className="flex flex-col gap-4 my-4">
+      <div className="my-4 flex flex-col gap-4">
         <Skeleton className="h-6 w-1/4" />
-        <Skeleton className="h-[48px] ws-full" />
+        <Skeleton className="ws-full h-[48px]" />
       </div>
       <div className="grid grid-cols-5 gap-4">
         {[...Array(15)].map((_, index) => (

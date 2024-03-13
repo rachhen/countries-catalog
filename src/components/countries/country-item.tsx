@@ -12,15 +12,15 @@ export function CountryItem({ item }: CountryItemProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border rounded-md">
-      <div className="px-2 pt-2 border-b">
+    <div className="rounded-md border">
+      <div className="border-b px-2 pt-2">
         <img
           src={item.flags.png}
           alt={item.flags.alt}
-          className="rounded-md w-full h-24 object-cover"
+          className="h-24 w-full rounded-md object-cover"
         />
         <h3
-          className="text-lg font-semibold py-2 cursor-pointer hover:underline"
+          className="cursor-pointer py-2 text-lg font-semibold hover:underline"
           onClick={() => setIsOpen(true)}
         >
           {item.name.official}

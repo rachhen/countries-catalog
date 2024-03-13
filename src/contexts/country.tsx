@@ -30,7 +30,7 @@ export function CountryProvider({ children, data }: CountryProviderProps) {
     }
 
     const filteredCountries = data.filter((country) =>
-      country.name.official.toLowerCase().includes(value.toLowerCase())
+      country.name.official.toLowerCase().includes(value.toLowerCase()),
     );
 
     setCountries(filteredCountries);
