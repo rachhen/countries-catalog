@@ -1,9 +1,9 @@
 import { useCountries } from "~/hooks/use-country";
 import { SearchBox } from "./search-box";
-import CountryList from "./country-list";
+import { CountryList } from "./country-list";
 import { CountryProvider } from "~/contexts/country";
 import { CountryLoading } from "./country-loading";
-import CountryPagination from "./country-pagination";
+import { CountryPagination } from "./country-pagination";
 
 export function Countries() {
   const { data, isLoading, error } = useCountries();

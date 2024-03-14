@@ -2,7 +2,7 @@ import { useCountryContext } from "~/contexts/country";
 import { CountryItem } from "./country-item";
 import { CountryEmpty } from "./country-empty";
 
-export default function CountryList() {
+export function CountryList() {
   const { countries } = useCountryContext();
 
   if (countries.length === 0) {

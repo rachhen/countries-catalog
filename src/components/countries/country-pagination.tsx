@@ -9,7 +9,7 @@ import { useCountryContext } from "~/contexts/country";
 import { pageSize } from "~/hooks/use-countries-paginate";
 import { cn } from "~/lib/utils";
 
-export default function CountryPagination() {
+export function CountryPagination() {
   const { page, totalItems, countries, onPaginate } = useCountryContext();
 
   if (countries.length < pageSize) {
