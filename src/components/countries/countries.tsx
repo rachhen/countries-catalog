@@ -4,6 +4,7 @@ import { CountryList } from "./country-list";
 import { CountryProvider } from "~/contexts/country";
 import { CountryLoading } from "./country-loading";
 import { CountryPagination } from "./country-pagination";
+import { DisplayError } from "../display-error";
 
 export function Countries() {
   const { data, isLoading, error } = useCountries();
@@ -13,7 +14,7 @@ export function Countries() {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <DisplayError message={error.message} />;
   }
 
   if (!data) {
