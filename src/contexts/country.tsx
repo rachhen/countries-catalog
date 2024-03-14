@@ -1,20 +1,20 @@
 import { createContext, useContext, useState } from "react";
 
 import { Country } from "../types/country";
+import { useCountriesPaginate } from "~/hooks/use-countries-paginate";
 
 export type SortBy = "asc" | "desc";
 
 type CountryContextType = {
+  page: number;
   countries: Country[];
+  totalItems: number;
   onSearch: (value: string) => void;
   onSort: (sort: SortBy) => void;
+  onPaginate: (pageNumber: number) => void;
 };
 
-const CountryContext = createContext<CountryContextType | undefined>({
-  countries: [],
-  onSearch: () => {},
-  onSort: () => {},
-});
+const CountryContext = createContext<CountryContextType | null>(null);
 
 type CountryProviderProps = {
   children: React.ReactNode;
@@ -22,10 +22,13 @@ type CountryProviderProps = {
 };
 
 export function CountryProvider({ children, data }: CountryProviderProps) {
+  const [page, setPage] = useState(1);
   const [countries, setCountries] = useState<Country[]>(data);
+  const countriesPaginated = useCountriesPaginate(countries, page);
 
   function onSearch(value: string) {
     if (value === "") {
+      setCountries(data);
       return;
     }
 
@@ -34,6 +37,7 @@ export function CountryProvider({ children, data }: CountryProviderProps) {
     );
 
     setCountries(filteredCountries);
+    onPaginate(1);
   }
 
   function onSort(sort: SortBy) {
@@ -48,8 +52,21 @@ export function CountryProvider({ children, data }: CountryProviderProps) {
     setCountries([...sortedCountries]);
   }
 
+  function onPaginate(pageNumber: number) {
+    setPage(pageNumber);
+  }
+
   return (
-    <CountryContext.Provider value={{ countries, onSearch, onSort }}>
+    <CountryContext.Provider
+      value={{
+        page,
+        countries: countriesPaginated,
+        totalItems: data.length,
+        onSearch,
+        onSort,
+        onPaginate,
+      }}
+    >
       {children}
     </CountryContext.Provider>
   );
@@ -59,7 +76,7 @@ export function CountryProvider({ children, data }: CountryProviderProps) {
 export const useCountryContext = () => {
   const context = useContext(CountryContext);
 
-  if (context === undefined) {
+  if (context === null) {
     throw new Error("useCountry must be used within a CountryProvider");
   }
 
