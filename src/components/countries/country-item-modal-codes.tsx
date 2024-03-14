@@ -26,7 +26,7 @@ export function CountryItemModalCodes({ item }: CountryItemModalCodesProps) {
           <TableRow>
             <TableHead className="w-full">International calling code</TableHead>
             <TableCell className="text-center">
-              <span className="block min-w-24">{`${item.idd.root}${item.idd.suffixes}`}</span>
+              <span className="block min-w-24">{`${item.idd.suffixes.map((s) => `${item.idd.root}${s}`).join(", ")}`}</span>
             </TableCell>
           </TableRow>
           <TableRow>

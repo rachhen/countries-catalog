@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { Country } from "~/types/country";
 import { CountryContentRow } from "./country-content-row";
 import { convertNativeNameToArray } from "~/lib/country";
+import { truncateString } from "~/lib/utils";
 
 type CountryItemContentProps = {
   item: Country;
@@ -27,7 +28,9 @@ export const CountryItemContent = ({ item }: CountryItemContentProps) => {
         <span>{item.cca3}</span>
       </CountryContentRow>
       <CountryContentRow label="Int. dial code">
-        <span>{`${item.idd.root}${item.idd.suffixes}`}</span>
+        <span>
+          {truncateString(`${item.idd.root}${item.idd.suffixes?.[0]}`, 40)}
+        </span>
       </CountryContentRow>
       <CountryContentRow className="items-start gap-1" label="Native">
         <span className="flex flex-1">{nativeName}</span>
@@ -37,7 +40,9 @@ export const CountryItemContent = ({ item }: CountryItemContentProps) => {
         label="Spelling"
         isSeparator={false}
       >
-        <span className="flex flex-1">{item.altSpellings.join(", ")}</span>
+        <span className="flex flex-1">
+          {truncateString(item.altSpellings.join(", "), 40)}
+        </span>
       </CountryContentRow>
     </div>
   );
