@@ -20,7 +20,7 @@ export function CountryPagination() {
   const isEndPage = page === Math.ceil(totalItems / pageSize);
 
   return (
-    <Pagination className="py-4">
+    <Pagination className="pb-4">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
